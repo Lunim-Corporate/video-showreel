@@ -18,21 +18,49 @@
   <style>
     html, body {
       margin: 0;
-      height: 100%;
       background: black;
-    }
-    video {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
     }
   </style>
 </head>
 <body>
-  <video
-    src="https://res.cloudinary.com/tabb/video/upload/v1770045261/app-assets/lunim/Lunim_Showreel.mp4"
-    controls
-    playsinline>
-  </video>
+  <video id="doc-player" controls class="cld-video-player cld-fluid" style="height: 100%;"></video>
+  <link rel="stylesheet" href="node_modules/cloudinary-video-player/dist/cld-video-player.min.css">
+  <script src="node_modules/cloudinary-video-player/dist/cld-video-player.min.js"></script>
+  <script>
+    (function () {
+      var cloudinary = window['cloudinary-video-player'];
+      var player = cloudinary.videoPlayer('doc-player', { cloudName: 'tabb' });
+      player.source(
+        'https://res.cloudinary.com/tabb/video/upload/v1770045261/app-assets/lunim/Lunim_Showreel.mp4',
+        {
+          textTracks: {
+            options: { theme: 'videojs-default' },
+            captions: {
+              label: 'English',
+              default: false,
+              url: 'https://res.cloudinary.com/tabb/raw/upload/v1771602024/app-assets/lunim/Lunim_Showreel.transcript'
+            },
+            subtitles: [
+              {
+                label: 'French',
+                language: 'fr-FR',
+                url: 'https://res.cloudinary.com/tabb/raw/upload/v1771602869/app-assets/lunim/Lunim_Showreel.fr.transcript'
+              },
+              {
+                label: 'Spanish',
+                language: 'es',
+                url: 'https://res.cloudinary.com/tabb/raw/upload/v1771608490/app-assets/lunim/Lunim_Showreel.es.transcript'
+              },
+              {
+                label: 'German',
+                language: 'de',
+                url: 'https://res.cloudinary.com/tabb/raw/upload/v1771602024/app-assets/lunim/Lunim_Showreel.tranhttps://res.cloudinary.com/tabb/raw/upload/v1771602865/app-assets/lunim/Lunim_Showreel.de.transcript'
+              }
+            ]          
+          }
+        }
+      );
+    })();
+  </script>
 </body>
 </html>
